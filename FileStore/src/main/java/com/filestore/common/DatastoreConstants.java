@@ -23,4 +23,7 @@ public class DatastoreConstants
 	public static final String EXPIRY_FILE_NAME = "KeyExpiry.ser";
 
 	public static final int WRITE_RETRY_COUNT = 5;
+	
+	public static final double SIZE_1GB = 1073741824D;
+	
 }

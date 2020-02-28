@@ -30,6 +30,7 @@ public class DataStoreMonitoringProcess implements Runnable
 
 	@Override
 	public void run() {
+        checkFileSize();
 		checkAndRemoveExpiredKeys();
 	}
 
@@ -95,4 +96,20 @@ public class DataStoreMonitoringProcess implements Runnable
 		return isExpired;
 	}
 
+	private String checkFileSize() {
+		String message = "File Size Normal";
+		try {
+			File file = new File(storeLocation);
+			if(file.exists() && !file.isDirectory()) {
+				double size = file.length();
+				if (size >= DatastoreConstants.SIZE_1GB) {
+					throw new StoreException("SIZE_EXCEEDED");
+				}
+			}
+		}catch(Exception e) {
+			message = e.getMessage();
+			e.printStackTrace();
+		}
+		return message;
+	}
 }
