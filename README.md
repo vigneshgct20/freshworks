@@ -1,0 +1,2 @@
+# freshworks
+datastore
